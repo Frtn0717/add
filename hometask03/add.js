@@ -22,26 +22,31 @@ function add() {
     Object.assign(result, args[0]);
     console.log(result);
   } else {
-    for(let i = 0; i < args.length; i++) {
-      for(let j = 0; j < Object.keys(args[i]).length; j++) {
-        if(Object.keys(result).includes(Object.keys(args[i])[j])) {
-          result[Object.keys(args[i])[j]] += Object.values(args[i])[j];
-        } else {   
-          result[Object.keys(args[i])[j]] = Object.values(args[i])[j]; 
+    Object.assign(result, args[0]);
+
+    for(let i = 1; i < args.length; i++) {
+      const currentObject = args[i];
+
+      for(let key in currentObject) {
+        if(key in result) {
+          result[key] += currentObject[key];
+        } else {
+          result[key] = currentObject[key];
         }
-      }      
+      }
     }
+
     console.log(result);
   }
 };
 
-// add(a, b, b, c, b, a);
+add(a, b, b, c, b);
 
-// add(a);
+add(a);
 
-// add(a, b);
+add(a, b);
 
-// add(a, b, a);
+add(a, b, a);
 
 //-------------------------------------
 
@@ -87,7 +92,7 @@ function findIntersect() {
     Object.assign(result, args[0])
     for(let i = 1; i < args.length; i++) {
 
-      let currentObject = args[i];
+      const currentObject = args[i];
 
       for(let key in currentObject) {
         if(key in result) {
@@ -114,4 +119,4 @@ function findIntersect() {
 
 // findIntersect(obj1, obj2, obj3);
 
-findIntersect(obj1, obj2, obj3, obj4);
+// findIntersect(obj1, obj2, obj3, obj4);
