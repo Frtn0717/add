@@ -40,9 +40,9 @@ function add() {
   }
 };
 
-add(a, b, b, c, b);
+// add(a, b, b, c, b);
 
-add(a);
+// add(a);
 
 add(a, b);
 
@@ -120,3 +120,38 @@ function findIntersect() {
 // findIntersect(obj1, obj2, obj3);
 
 // findIntersect(obj1, obj2, obj3, obj4);
+
+// ------------------------
+
+function findIntersectInArr() {
+  const args = [...arguments];
+  let result = {};
+
+  if(args.length < 2) {
+    throw new Error("Needs at least 2 arguments");
+  } else {
+    Object.assign(result, args[0]) 
+
+    for(let i = 1; i < args.length; i++) {
+
+      const currentObject = args[i];
+
+      for(let key in result) {
+        if((key in currentObject) === false) {
+          delete result[key];
+        }
+      }
+    }
+  }
+  console.log(Object.keys(result));
+}
+
+// findIntersectInArr(obj1, obj2);
+
+// findIntersectInArr(obj1, obj3);
+
+// findIntersectInArr(obj2, obj3);
+
+// findIntersectInArr(obj1, obj2, obj3);
+
+// findIntersectInArr(obj1, obj2, obj3, obj4);
