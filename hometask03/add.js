@@ -1,5 +1,5 @@
 const a = {
-  x: 1,  
+  x: 1,
 };
 
 const b = {
@@ -15,34 +15,30 @@ const c = {
 function add(...args) {
   const result = {};
 
-  if(args.length === 0) {
+  if (args.length === 0) {
     return null;
   } else {
-    Object.assign(result, args[0]);
-
-    for(let i = 1; i < args.length; i++) {
-      const currentObject = args[i];
-
-      for(let key in currentObject) {
-        if(key in result) {
-          result[key] += currentObject[key];
+    args.reduce((acc, currItem) => {
+      Object.keys(currItem).map((key) => {
+        if (result[key]) {
+          result[key] += currItem[key];
         } else {
-          result[key] = currentObject[key];
+          result[key] = currItem[key];
         }
-      }
-    }
+      });
+    }, {});
 
     return result;
   }
-};
+}
 
-// console.log(add(a, b, b, c, b));
-
-// console.log(add(a));
+console.log(add(a));
 
 console.log(add(a, b));
 
 console.log(add(a, b, a));
+
+console.log(add(a, b, b, c, b));
 
 //-------------------------------------
 
@@ -51,7 +47,7 @@ const obj1 = {
   p: 0,
   a: 2,
   m: 1,
-}
+};
 
 const obj2 = {
   h: 3,
@@ -60,7 +56,7 @@ const obj2 = {
   l: 4,
   e: 0,
   m: 5,
-}
+};
 
 const obj3 = {
   h: 2,
@@ -68,7 +64,7 @@ const obj3 = {
   m: 3,
   e: 1,
   l: 3,
-}
+};
 
 const obj4 = {
   m: 2,
@@ -76,34 +72,31 @@ const obj4 = {
   n: 3,
   s: 5,
   k: 0,
-}
+};
 
 function findIntersect(...args) {
   const result = {};
 
-  if(args.length < 2) {
+  if (args.length < 2) {
     return null;
   } else {
-    Object.assign(result, args[0])
-    for(let i = 1; i < args.length; i++) {
+    Object.assign(result, args[0]);
 
-      const currentObject = args[i];
+    args.reduce((acc, currItem) => {
+      Object.keys(currItem).map((key) => {
+        if (key in result) {
+          result[key] += currItem[key];
+        }
+      });
 
-      for(let key in currentObject) {
-        if(key in result) {
-          result[key] += currentObject[key];
-        } 
-      }
-
-      for(let key in result) {
-        if((key in currentObject) === false) {
+      Object.keys(result).map((key) => {
+        if (key in currItem === false) {
           delete result[key];
         }
-      }
-    }
+      });
+    });
   }
-
-    return result;
+  return result;
 }
 
 // console.log(findIntersect(obj1, obj2));
@@ -121,21 +114,18 @@ function findIntersect(...args) {
 function findIntersectInArr(...args) {
   const result = {};
 
-  if(args.length < 2) {
+  if (args.length < 2) {
     return null;
   } else {
-    Object.assign(result, args[0]) 
+    Object.assign(result, args[0]);
 
-    for(let i = 1; i < args.length; i++) {
-
-      const currentObject = args[i];
-
-      for(let key in result) {
-        if((key in currentObject) === false) {
+    args.reduce((acc, currItem) => {
+      Object.keys(result).map((key) => {
+        if (key in currItem === false) {
           delete result[key];
         }
-      }
-    }
+      });
+    });
   }
   return Object.keys(result);
 }
