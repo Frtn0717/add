@@ -16,7 +16,7 @@ function add(...args) {
   const result = {};
 
   if(args.length === 0) {
-    throw new Error('Needs at least 1 argument');
+    return null;
   } else {
     Object.assign(result, args[0]);
 
@@ -82,7 +82,7 @@ function findIntersect(...args) {
   const result = {};
 
   if(args.length < 2) {
-    throw new Error("Needs at least 2 arguments");
+    return null;
   } else {
     Object.assign(result, args[0])
     for(let i = 1; i < args.length; i++) {
@@ -122,7 +122,7 @@ function findIntersectInArr(...args) {
   const result = {};
 
   if(args.length < 2) {
-    throw new Error("Needs at least 2 arguments");
+    return null;
   } else {
     Object.assign(result, args[0]) 
 
