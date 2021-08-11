@@ -12,8 +12,7 @@ const c = {
   z: 7,
 };
 
-function add() {
-  const args = [...arguments];
+function add(...args) {
   const result = {};
 
   if(args.length === 0) {
@@ -82,8 +81,7 @@ const obj4 = {
   k: 0,
 }
 
-function findIntersect() {
-  const args = [...arguments];
+function findIntersect(...args) {
   const result = {};
 
   if(args.length < 2) {
@@ -123,9 +121,8 @@ function findIntersect() {
 
 // ------------------------
 
-function findIntersectInArr() {
-  const args = [...arguments];
-  let result = {};
+function findIntersectInArr(...args) {
+  const result = {};
 
   if(args.length < 2) {
     throw new Error("Needs at least 2 arguments");
