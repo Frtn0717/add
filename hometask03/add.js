@@ -20,7 +20,7 @@ function add() {
     throw new Error('Needs at least 1 argument');
   } else if(args.length === 1) {
     Object.assign(result, args[0]);
-    console.log(result);
+    return result;
   } else {
     Object.assign(result, args[0]);
 
@@ -36,17 +36,17 @@ function add() {
       }
     }
 
-    console.log(result);
+    return result;
   }
 };
 
-// add(a, b, b, c, b);
+// console.log(add(a, b, b, c, b));
 
-// add(a);
+// console.log(add(a));
 
-add(a, b);
+console.log(add(a, b));
 
-add(a, b, a);
+console.log(add(a, b, a));
 
 //-------------------------------------
 
@@ -108,18 +108,18 @@ function findIntersect() {
     }
   }
 
-    console.log(result);
+    return result;
 }
 
-// findIntersect(obj1, obj2);
+// console.log(findIntersect(obj1, obj2));
 
-// findIntersect(obj1, obj3);
+// console.log(findIntersect(obj1, obj3));
 
-// findIntersect(obj2, obj3);
+// console.log(findIntersect(obj2, obj3));
 
-// findIntersect(obj1, obj2, obj3);
+// console.log(findIntersect(obj1, obj2, obj3));
 
-// findIntersect(obj1, obj2, obj3, obj4);
+// console.log(findIntersect(obj1, obj2, obj3, obj4));
 
 // ------------------------
 
@@ -143,15 +143,15 @@ function findIntersectInArr() {
       }
     }
   }
-  console.log(Object.keys(result));
+  return Object.keys(result);
 }
 
-// findIntersectInArr(obj1, obj2);
+// console.log(findIntersectInArr(obj1, obj2));
 
-// findIntersectInArr(obj1, obj3);
+// console.log(findIntersectInArr(obj1, obj3));
 
-// findIntersectInArr(obj2, obj3);
+// console.log(findIntersectInArr(obj2, obj3));
 
-// findIntersectInArr(obj1, obj2, obj3);
+// console.log(findIntersectInArr(obj1, obj2, obj3));
 
-// findIntersectInArr(obj1, obj2, obj3, obj4);
+// console.log(findIntersectInArr(obj1, obj2, obj3, obj4));
