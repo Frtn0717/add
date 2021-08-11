@@ -17,9 +17,6 @@ function add(...args) {
 
   if(args.length === 0) {
     throw new Error('Needs at least 1 argument');
-  } else if(args.length === 1) {
-    Object.assign(result, args[0]);
-    return result;
   } else {
     Object.assign(result, args[0]);
 
