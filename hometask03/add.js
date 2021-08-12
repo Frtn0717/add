@@ -13,24 +13,21 @@ const c = {
 };
 
 function add(...args) {
-  const result = {};
-
   if (args.length === 0) {
     return null;
   } else {
-    args.reduce((acc, currItem) => {
-      Object.keys(currItem).map((key) => {
-        if (result[key]) {
-          result[key] += currItem[key];
+    return args.reduce((acc, currItem) => {
+      Object.keys(currItem).forEach(key => {
+        if (acc[key] || acc[key] === 0) {
+          acc[key] += currItem[key];
         } else {
-          result[key] = currItem[key];
+          acc[key] = currItem[key];
         }
       });
+      return acc;
     }, {});
-
-    return result;
-  }
-}
+  };
+};
 
 console.log(add(a));
 
@@ -75,29 +72,24 @@ const obj4 = {
 };
 
 function findIntersect(...args) {
-  const result = {};
-
   if (args.length < 2) {
     return null;
   } else {
-    Object.assign(result, args[0]);
-
-    args.reduce((acc, currItem) => {
-      Object.keys(currItem).map((key) => {
-        if (key in result) {
-          result[key] += currItem[key];
+    return args.reduce((acc, currItem) => {
+      Object.keys(currItem).forEach(key => {
+        if (acc[key] || acc[key] === 0) {
+          acc[key] += currItem[key];
         }
       });
-
-      Object.keys(result).map((key) => {
-        if (key in currItem === false) {
-          delete result[key];
+      Object.keys(acc).forEach(key => {
+        if (!currItem.hasOwnProperty(key)) {
+          delete acc[key];
         }
       });
-    });
-  }
-  return result;
-}
+      return acc;
+    }, Object.assign({}, args.shift(0)));
+  };
+};
 
 // console.log(findIntersect(obj1, obj2));
 
@@ -112,23 +104,18 @@ function findIntersect(...args) {
 // ------------------------
 
 function findIntersectInArr(...args) {
-  const result = {};
-
   if (args.length < 2) {
     return null;
   } else {
-    Object.assign(result, args[0]);
-
-    args.reduce((acc, currItem) => {
-      Object.keys(result).map((key) => {
-        if (key in currItem === false) {
-          delete result[key];
+    return args.reduce((acc, currItem) => {
+      return Object.keys(currItem).filter(key => {
+        if(acc.includes(key)) {
+          return key;
         }
       });
-    });
-  }
-  return Object.keys(result);
-}
+    }, [...Object.keys(args[0])]);
+  };
+};
 
 // console.log(findIntersectInArr(obj1, obj2));
 
