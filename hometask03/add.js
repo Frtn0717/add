@@ -87,7 +87,7 @@ function findIntersect(...args) {
         }
       });
       return acc;
-    }, Object.assign({}, args.shift(0)));
+    }, Object.assign({}, args.shift()));
   };
 };
 
